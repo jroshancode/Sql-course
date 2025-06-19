@@ -1,0 +1,26 @@
+-- https://www.hackerrank.com/challenges/challenges/problem?isFullScreen=true
+
+with temp as (
+select hacker_id, count(challenge_id) as count_challenge
+from challenges
+group by hacker_id
+order by count(challenge_id) desc),
+chal as  (
+select count_challenge, count(hacker_id) as hacker_count
+from temp
+group by count_challenge)
+
+-- select count_challenge, count(hacker_id)
+-- from temp
+-- group by count_challenge
+
+select h.hacker_id, h.name, temp.count_challenge
+from hackers h
+join temp
+on
+h.hacker_id = temp.hacker_id
+join chal
+on
+temp.count_challenge = chal.count_challenge
+where chal.hacker_count =1 or (chal.hacker_count>1 and chal.count_challenge = (select count_challenge from temp limit 1))
+order by temp.count_challenge desc, h.hacker_id;

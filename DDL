@@ -12,3 +12,7 @@ updated_at datetime
 
 # Select 
 select * from emp
+
+# filter my emp records
+
+select * from emp where _id = 103;

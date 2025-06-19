@@ -1,0 +1,11 @@
+# DDL ( Data definition language )
+# Created table 
+
+Created table emp(
+_id int not null primary key auto_increment,
+_name varchar(30) not null ,
+_email varchar(50) not null, 
+desc text,
+created_at datetime ,
+updated_at datetime
+)
